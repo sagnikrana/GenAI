@@ -39,25 +39,24 @@ start = time.time()
 if documents:
     st.write("Splitting the documents and persisting ")
     splits = text_splitter.split_documents(documents)
+    st.write('Have the splits')
     vector_db = Chroma.from_documents(splits,embeddings, persist_directory = '..\stored_data\chroma_db')
     st.write("Persisted")
     # Process 1
     end = time.time()
-    print(f"Process 1 took {end - start} seconds")
+    st.write(f"Process 1 took {end - start} seconds")
 
 
+# Write code to summarize the document using the Ollama Embedding
 
-# Write code to summarize the document using the Ollama Embedding 
+
 
 # Tell user that it's ready
 if vector_db:
     st.write("the data is ready !!")
     name = st.text_input('Please enter your question about the document')
 
-
-# User interface to submit question 
-
-# Take the info and do a similarity search
+# Take the question and do a similarity search
 
 # Validate the output
 
@@ -67,11 +66,10 @@ if vector_db:
 
 
 
-
 # Turn the user search answer box to a query based interface
 
 
-# Provide users option to select the temperatire and other objectives. 
+# Provide users option to select the temperature and other objectives. 
 
 
 # Mention how much of chat history we need to provide.
