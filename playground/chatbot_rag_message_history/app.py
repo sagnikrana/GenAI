@@ -11,7 +11,6 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 uploaded_file = st.file_uploader("Upload your PDF file", type="pdf")
 
-
 # Read the PDF
 documents = None
 vector_db = None

@@ -35,22 +35,19 @@ st.title("Enhanced Q&A Chatbot With OpenAI")
 
 
 ## Select the OpenAI model
-llm=st.sidebar.selectbox("Select Open Source model",["mistral"])
+llm=st.sidebar.selectbox("Select Open Source model",["gemma:2b"])
 
 ## Adjust response parameter
 temperature=st.sidebar.slider("Temperature",min_value=0.0,max_value=1.0,value=0.7)
 max_tokens = st.sidebar.slider("Max Tokens", min_value=50, max_value=300, value=150)
 
 ## MAin interface for user input
-st.write("Goe ahead and ask any question")
+st.write("Go ahead and ask any question")
 user_input=st.text_input("You:")
 
-
-
 if user_input :
+    st.write("User i/p received")
     response=generate_response(user_input,llm,temperature,max_tokens)
     st.write(response)
 else:
     st.write("Please provide the user input")
-
-
