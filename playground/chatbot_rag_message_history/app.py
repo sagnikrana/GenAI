@@ -78,39 +78,34 @@ if documents:
         for doc in splits
     ]
     st.write("Cleaned docs are ready.")
-
-
-
-# Write code to summarize the document using the Ollama Embedding
-prompt=ChatPromptTemplate.from_template(
+    st.write(cleaned_docs)
+    # Write code to summarize the document using the Ollama Embedding
+    prompt=ChatPromptTemplate.from_template(
+        """
+    Answer the following question based only on the provided context:
+    <context>
+    {context}
+    </context>
     """
-Answer the following question based only on the provided context:
-<context>
-{context}
-</context>
-"""
-)
+    )
 
-document_chain=create_stuff_documents_chain(llm,prompt)
-response = document_chain.invoke({
-   "input" : "Please summarize in short the document that's provided to you",
-    "context" :cleaned_docs
-})
-st.write("Here is the response : {response}")
+    document_chain=create_stuff_documents_chain(llm,prompt)
+    response = document_chain.invoke({
+    "input" : "Please summarize in short the document that's provided to you",
+        "context" :cleaned_docs
+    })
+    st.write(f"Here is the summary of the file you provided : {response}")
 
-# Tell user that it's ready
-if vector_db:
-    st.write("the data is ready !!")
-    name = st.text_input('Please enter your question about the document')
+    # Tell user that it's ready
+    if vector_db:
+        st.write("the data is ready !!")
+        name = st.text_input('Please enter your question about the document')
 
 # Take the question and do a similarity search
 
 # Validate the output
 
 # return the output to the user.
-
-
-
 
 
 # Turn the user search answer box to a query based interface
