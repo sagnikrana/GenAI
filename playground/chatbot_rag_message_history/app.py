@@ -103,12 +103,17 @@ if documents:
             st.write(f"Got your question : Your question is  : {query}")
             docs_from_query = vector_db.similarity_search(query)
             st.write("Following are the results from the similarity search : ")
-            st.write(docs_from_query)
-            # for i, doc in enumerate(docs_from_query):
-            #     print(f"Result {i+1}")
-            #     print(f"Content:\n{doc.page_content.strip()}")
-            #     print(f"Metadata: {doc.metadata}")
-            #     print("-" * 40)
+            for i, doc in enumerate(docs_from_query):
+                st.write(f"Result {i+1}")
+                result = ""
+                for content in doc.page_content : 
+                    result = result+content
+                st.write(f"The result is : {result}")
+                # st.write(f"the length of the docs from query loop : {doc} ")
+                # st.write(f"the length of the docs from query loop : {len(doc.page_content)} ")
+                # st.write(f"Content:\n{doc.page_content}")
+                # st.write(f"Metadata: {doc.metadata}")
+                st.write("-" * 40)
 
 # Take the question and do a similarity search
 
