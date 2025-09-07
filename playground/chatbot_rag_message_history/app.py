@@ -108,6 +108,7 @@ if documents:
                 st.write(f"Content:\n{doc.page_content.strip().replace("\n", "")}")
                 st.write(f"Metadata: {doc.metadata}")
                 st.write("-" * 40)
+                break
 
 
 # Provide users option to select the temperature and other objectives. 
