@@ -98,7 +98,17 @@ if documents:
     # Tell user that it's ready
     if vector_db:
         st.write("the data is ready !!")
-        name = st.text_input('Please enter your question about the document')
+        query = st.text_input('Please enter your question about the document')
+        if len(query) > 0 : 
+            st.write(f"Got your question : Your question is  : {query}")
+            docs_from_query = vector_db.similarity_search(query)
+            st.write("Following are the results from the similarity search : ")
+            st.write(docs_from_query)
+            # for i, doc in enumerate(docs_from_query):
+            #     print(f"Result {i+1}")
+            #     print(f"Content:\n{doc.page_content.strip()}")
+            #     print(f"Metadata: {doc.metadata}")
+            #     print("-" * 40)
 
 # Take the question and do a similarity search
 
