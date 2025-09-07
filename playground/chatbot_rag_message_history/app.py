@@ -78,7 +78,6 @@ if documents:
         for doc in splits
     ]
     st.write("Cleaned docs are ready.")
-    st.write(cleaned_docs)
     # Write code to summarize the document using the Ollama Embedding
     prompt=ChatPromptTemplate.from_template(
         """
