@@ -105,24 +105,9 @@ if documents:
             st.write("Following are the results from the similarity search : ")
             for i, doc in enumerate(docs_from_query):
                 st.write(f"Result {i+1}")
-                result = ""
-                for content in doc.page_content : 
-                    result = result+content
-                st.write(f"The result is : {result}")
-                # st.write(f"the length of the docs from query loop : {doc} ")
-                # st.write(f"the length of the docs from query loop : {len(doc.page_content)} ")
-                # st.write(f"Content:\n{doc.page_content}")
-                # st.write(f"Metadata: {doc.metadata}")
+                st.write(f"Content:\n{doc.page_content.strip().replace("\n", "")}")
+                st.write(f"Metadata: {doc.metadata}")
                 st.write("-" * 40)
-
-# Take the question and do a similarity search
-
-# Validate the output
-
-# return the output to the user.
-
-
-# Turn the user search answer box to a query based interface
 
 
 # Provide users option to select the temperature and other objectives. 
