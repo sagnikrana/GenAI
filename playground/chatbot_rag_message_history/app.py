@@ -114,7 +114,7 @@ if documents:
 # Provide users option to select the temperature and other objectives. 
 
 
-# Mention how much of chat history we need to provide.
+# Store embeddings and create a message history code.
 
 
 # Handle exceptions and prepare for shipping
