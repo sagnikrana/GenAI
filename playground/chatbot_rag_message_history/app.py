@@ -100,38 +100,36 @@ if documents:
         st.write("the data is ready !!")
         query = st.text_input('Please enter your question about the document')
         if len(query) > 0 : 
-            st.write(f"Got your question : Your question is  : {query}")
-            docs_from_query = vector_db.similarity_search(query)
-            st.write("Following are the results from the similarity search : ")
-            for i, doc in enumerate(docs_from_query):
-                st.write(f"Result {i+1}")
-                st.write(f"Content:\n{doc.page_content.strip().replace("\n", "")}")
-                st.write(f"Metadata: {doc.metadata}")
-                st.write("-" * 40)
-                break
+            # st.write(f"Got your question : Your question is  : {query}")
+            # docs_from_query = vector_db.similarity_search(query)
+            # st.write("Following are the results from the similarity search : ")
+            # for i, doc in enumerate(docs_from_query):
+            #     st.write(f"Result {i+1}")
+            #     st.write(f"Content:\n{doc.page_content.strip().replace("\n", "")}")
+            #     st.write(f"Metadata: {doc.metadata}")
+            #     st.write("-" * 40)
+            #     break
 
-        st.write("You just tried the Vector DB Similarity Search. Now let's try Ollama Model's comprehension about this topic.")
-        prompt=ChatPromptTemplate.from_template(
+            st.write("You just tried the Vector DB Similarity Search. Now let's try Ollama Model's comprehension about this topic.")
+            prompt=ChatPromptTemplate.from_template(
+                """
+            Answer the following question
+            <question>
+            {question}
+            </question>
+            based only on the provided context:
+            <context>
+            {context}
+            </context>
             """
-        Answer the following question
-        <question>
-        {question}
-        </question>
-        based only on the provided context:
-        <context>
-        {context}
-        </context>
-        """
-        )
-        document_chain=create_stuff_documents_chain(llm,prompt)
-        response = document_chain.invoke({
-        "question" : query,
-        "context" :cleaned_docs
-        })
-        st.write(f"Here is the response to your question : {response}")
+            )
+            document_chain=create_stuff_documents_chain(llm,prompt)
+            response = document_chain.invoke({
+            "question" : query,
+            "context" :cleaned_docs
+            })
+            st.write(f"Here is the response to your question : {response}")
 
-
-# Replace the vector db with something better. It's not up to the mark
 
 # Provide users option to select the temperature and other objectives. 
 
