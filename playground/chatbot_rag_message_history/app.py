@@ -91,7 +91,7 @@ if documents:
     document_chain=create_stuff_documents_chain(llm,prompt)
     response = document_chain.invoke({
     "input" : "Please summarize in short the document that's provided to you",
-        "context" :cleaned_docs
+    "context" :cleaned_docs
     })
     st.write(f"Here is the summary of the file you provided : {response}")
 
@@ -110,6 +110,28 @@ if documents:
                 st.write("-" * 40)
                 break
 
+        st.write("You just tried the Vector DB Similarity Search. Now let's try Ollama Model's comprehension about this topic.")
+        prompt=ChatPromptTemplate.from_template(
+            """
+        Answer the following question
+        <question>
+        {question}
+        </question>
+        based only on the provided context:
+        <context>
+        {context}
+        </context>
+        """
+        )
+        document_chain=create_stuff_documents_chain(llm,prompt)
+        response = document_chain.invoke({
+        "question" : query,
+        "context" :cleaned_docs
+        })
+        st.write(f"Here is the response to your question : {response}")
+
+
+# Replace the vector db with something better. It's not up to the mark
 
 # Provide users option to select the temperature and other objectives. 
 
