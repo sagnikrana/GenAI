@@ -8,6 +8,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders.notebook import remove_newlines
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.llms import Ollama
+# from langchain_ollama.llms import OllamaLLM
 from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -25,6 +26,7 @@ vector_db = None
 cleaned_docs = None
 
 embeddings=(OllamaEmbeddings(model="gemma:2b"))  ##by default it ues llama2. gemma:2b is downloaded in local pc
+# llm = OllamaLLM(model="gemma:2b")
 llm = Ollama(model="gemma:2b")
 
 
