@@ -1,32 +1,17 @@
-import streamlit as st
 import time
 
-from langchain.document_loaders import PyPDFLoader
-from langchain_community.llms import Ollama
-from langchain_community.embeddings import OllamaEmbeddings
-from langchain_chroma import Chroma
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-
-import pandas as pd
-import numpy as np
+import streamlit as st
+from dotenv import load_dotenv
+from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_community.llms import Ollama
-from langchain_community.document_loaders import WebBaseLoader
-from langchain_core.documents import Document
-from langchain_openai import OpenAIEmbeddings
-from langchain_openai import ChatOpenAI
 from langchain_community.document_loaders.notebook import remove_newlines
-from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_community.embeddings import OllamaEmbeddings
+from langchain_community.llms import Ollama
+from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.messages import HumanMessage,SystemMessage
-from langchain_community.chat_message_histories import ChatMessageHistory
-from langchain_core.chat_history import BaseChatMessageHistory
-from langchain_core.runnables.history import RunnableWithMessageHistory
-from langchain_core.output_parsers import StrOutputParser
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-import os
-from dotenv import load_dotenv
 load_dotenv()
 
 
@@ -67,7 +52,7 @@ if documents:
     st.write("Splitting the documents and persisting ")
     splits = text_splitter.split_documents(documents)
     st.write('Have the splits')
-    vector_db = Chroma.from_documents(splits,embeddings, persist_directory = '..\stored_data\chroma_db')
+    vector_db = Chroma.from_documents(splits,embeddings, persist_directory = '../stored_data/chroma_db')
     st.write("Persisted")
     # Process 1
     end = time.time()
