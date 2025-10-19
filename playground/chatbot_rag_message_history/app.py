@@ -121,7 +121,7 @@ if documents:
 # Provide users option to select the temperature and other objectives. 
 
 
-# Store embeddings and create a message history code.
+# Store embeddings and create a message history code. Use it
 
 
 # Handle exceptions and prepare for shipping
