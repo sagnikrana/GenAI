@@ -112,14 +112,14 @@ else:
                     # Create prompt template
                     prompt = ChatPromptTemplate.from_template(
                         """
-Answer the following question based only on the provided context:
-<context>
-{context}
-</context>
-
-Question: {input}
-Chat History : {chat_history}
-"""
+                        Answer the following question based only on the provided context:
+                        <context>
+                        {context}
+                        </context>
+                        
+                        Question: {input}
+                        Chat History : {chat_history}
+                        """
                     )
 
                     # Create document chain
